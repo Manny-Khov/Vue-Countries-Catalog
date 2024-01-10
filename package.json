@@ -1,7 +1,9 @@
 {
   "name": "countries-catalog",
+  
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://manny-khov.github.io/Vue-Countries-Catalog/",
   "scripts": {
     "serve": "vite preview",
     "build": "vite build",
