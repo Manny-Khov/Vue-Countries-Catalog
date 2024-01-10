@@ -18,7 +18,7 @@
   
       <!-- Sorting Buttons -->
       <v-row>
-        <v-col cols="12" class="d-flex justify-start">
+        <v-col cols="12" class="d-flex justify-center">
           <v-btn color="primary" class="mr-2" @click="setSortOrder('asc')">Sort Name Asc</v-btn>
           <v-btn color="primary" @click="setSortOrder('desc')">Sort Name Desc</v-btn>
         </v-col>
@@ -65,11 +65,15 @@
       </v-dialog>
   
       <!-- Pagination Controls -->
-      <div class="flex justify-center my-5">
-        <v-btn @click="fetchCountries(currentPage - 1)" :disabled="currentPage <= 1" color="primary" text>Previous</v-btn>
-        <span class="mx-3 my-auto">{{ currentPage }} of {{ totalPages }}</span>
-        <v-btn @click="fetchCountries(currentPage + 1)" :disabled="currentPage >= totalPages" color="primary" text>Next</v-btn>
-      </div>
+      <v-row justify="center">
+            <v-col cols="auto">
+                <div class="my-5">
+                <v-btn @click="fetchCountries(currentPage - 1)" :disabled="currentPage <= 1" color="primary" text>Previous</v-btn>
+                <span class="mx-3 my-auto">{{ currentPage }} of {{ totalPages }}</span>
+                <v-btn @click="fetchCountries(currentPage + 1)" :disabled="currentPage >= totalPages" color="primary" text>Next</v-btn>
+                </div>
+            </v-col>
+        </v-row>
     </v-container>
   </template>
   
@@ -95,7 +99,7 @@
     methods: {
       async fetchCountries(page = 1) {
         try {
-          const response = await axios.get(`/api/countries?page=${page}&search=${this.searchQuery}&sort=${this.sortOrder}`);
+          const response = await axios.get(`https://countries-catalog-implementation.fly.dev/api/countries?page=${page}&search=${this.searchQuery}&sort=${this.sortOrder}`);
           this.countries = response.data.data;
           this.currentPage = response.data.current_page;
           this.perPage = response.data.per_page;
